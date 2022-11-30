@@ -57,7 +57,7 @@ python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.la
 
 ## Evaluation
 
-To evaluate the model, run:
+To evaluate the model, run (Note that latest.pth files are ~500MB, which we will provide on request):
 
 For Landcover.ai:
 ```bash
