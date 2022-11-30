@@ -43,15 +43,15 @@ Original SegNeXt used 8 GPUs for training by default. However, we changed it to 
 
 For Landcover.ai:
 ```bash
-python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight.py
-python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py
-python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub_nopre.py
+python tools/train.py local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight.py
+python tools/train.py  local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py
+python tools/train.py local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub_nopre.py
 ```
 For Pascal VOC:
 ```bash
-python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k.py
-python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub.py
-python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub_nopre.py
+python tools/train.py local_configs/segnext/large/segnext.large.512x512.voc.40k.py
+python tools/train.py local_configs/segnext/large/segnext.large.512x512.voc.40k_sub.py
+python tools/train.py local_configs/segnext/large/segnext.large.512x512.voc.40k_sub_nopre.py
 ```
 
 
@@ -61,17 +61,17 @@ To evaluate the model, run (Note that latest.pth files are ~500MB, which we will
 
 For Landcover.ai:
 ```bash
-python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.voc.40k/latest.pth --eval mIoU
-python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.voc.40k_sub/latest.pth --eval mIoU
-python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub_nopre.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.voc.40k_sub_nopre/latest.pth --eval mIoU
+python tools/test.py local_configs/segnext/large/segnext.large.512x512.voc.40k.py work_dirs/segnext.large.512x512.voc.40k/latest.pth --eval mIoU
+python tools/test.py  local_configs/segnext/large/segnext.large.512x512.voc.40k_sub.py work_dirs/segnext.large.512x512.voc.40k_sub/latest.pth --eval mIoU
+python tools/test.py local_configs/segnext/large/segnext.large.512x512.voc.40k_sub_nopre.py work_dirs/segnext.large.512x512.voc.40k_sub_nopre/latest.pth --eval mIoU
 ```
 
 
 For Pascal VOC:
 ```bash
-python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight/latest.pth --eval mIoU
-python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight_sub/latest.pth --eval mIoU
-python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub_nopre.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight_sub_nopre/latest.pth --eval mIoU
+python tools/test.py  local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight.py work_dirs/segnext.large.512x512.landcover.40k_weight/latest.pth --eval mIoU
+python tools/test.py  local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py work_dirs/segnext.large.512x512.landcover.40k_weight_sub/latest.pth --eval mIoU
+python tools/test.py  local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub_nopre.py work_dirs/segnext.large.512x512.landcover.40k_weight_sub_nopre/latest.pth --eval mIoU
 ```
 
 ## Changes we made to the original SegNext implementation:
@@ -82,13 +82,13 @@ python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.la
 
 ## Where to find each model in the framework:
 
-* Data processing (customized): SegNeXt/local\_configs/\_base\_/datasets/. In this directory, I created separate processing file for each dataset.
-* Encoder: Model is in SegNeXt/mmseg/models/backbones/mscan.py, including MLP (line 15-35), StemConv (line 38-56), Attention (line 59-91), Spatial Attention (line 94-110), Image to Patch Embedding (line 148-167), organizing MSCAN class (line 171-255), Depth-wise convolution and Scale (line 258-266) 
+* Data processing (customized): local\_configs/\_base\_/datasets/. In this directory, I created separate processing file for each dataset.
+* Encoder: Model is in mmseg/models/backbones/mscan.py, including MLP (line 15-35), StemConv (line 38-56), Attention (line 59-91), Spatial Attention (line 94-110), Image to Patch Embedding (line 148-167), organizing MSCAN class (line 171-255), Depth-wise convolution and Scale (line 258-266) 
 
-   Parameter set up is in ~/SegNeXt/local\_configs/\_base\_/models/
-* Decoder: Model is in SegNeXt/mmseg/models/decode\_heads/ham\_head.py, including Matrix Decomposition (line 11-100), NMF by calling Matrix Decomposition (line 103-145), Hamburger class by calling NMF (line 148-180), and LightHamHead class by calling Hamburger (line 183-240)
+   Parameter set up is in local\_configs/\_base\_/models/
+* Decoder: Model is in mmseg/models/decode\_heads/ham\_head.py, including Matrix Decomposition (line 11-100), NMF by calling Matrix Decomposition (line 103-145), Hamburger class by calling NMF (line 148-180), and LightHamHead class by calling Hamburger (line 183-240)
 
-    Parameter set up is in ~/SegNeXt/local\_configs/\_base\_/models/
+    Parameter set up is in local\_configs/\_base\_/models/
 
 
 
