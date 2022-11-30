@@ -79,7 +79,6 @@ python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.la
 * Change the multi-processing setup because of lack of computational resources.
 * To run Pascal VOC smoothly, we need to create customized data processing files and config files for it because SegNext didn't provide it.
 * To run our customized remote sensing dataset,  we need to create LandcoverDataset class,  register the customized dataset, create script to convert dataset, create dataset processing file, and config files.
-\end{itemize}
 
 ## Where to find each model in the framework:
 
