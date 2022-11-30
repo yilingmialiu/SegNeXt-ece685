@@ -6,7 +6,7 @@ The repository contains official Pytorch implementations of training and evaluat
 
 The paper is in [Here](https://arxiv.org/pdf/2209.08575.pdf).
 
-The code is based on [MMSegmentaion v0.24.1](https://github.com/open-mmlab/mmsegmentation/tree/v0.24.1).
+Our implementation is mainly based on (https://github.com/visual-attention-network/segnext). And the original code is based on [MMSegmentaion v0.24.1](https://github.com/open-mmlab/mmsegmentation/tree/v0.24.1).
 
 
 ## Citation
@@ -25,8 +25,6 @@ If you find our repo useful for your research, please consider citing our paper:
 ## Results
 
 **Notes**: ImageNet Pre-trained models can be found in [TsingHua Cloud](https://cloud.tsinghua.edu.cn/d/c15b25a6745946618462/).
-
-## Rank 1 on Pascal VOC dataset: [Leaderboard](http://host.robots.ox.ac.uk:8080/leaderboard/displaylb_main.php?challengeid=11&compid=6)
 
 
 ## Installation
@@ -75,6 +73,21 @@ python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.la
 python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight_sub/latest.pth --eval mIoU
 python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub_nopre.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight_sub_nopre/latest.pth --eval mIoU
 ```
+
+## Changes we made to the original SegNext implementation:
+
+* Change the multi-processing setup because of lack of computational resources.
+* To run Pascal VOC smoothly, we need to create customized data processing files and config files for it because SegNext didn't provide it.
+* To run our customized remote sensing dataset,  we need to create LandcoverDataset class,  register the customized dataset, create script to convert dataset, create dataset processing file, and config files.
+\end{itemize}
+
+## Where to find each model in the framework:
+
+* Data processing (customized): SegNeXt/local\_configs/\_base\_/datasets/. In this directory, I created separate processing file for each dataset.
+* Encoder: Model is in SegNeXt/mmseg/models/backbones/mscan.py, including MLP (line 15-35), StemConv (line 38-56), Attention (line 59-91), Spatial Attention (line 94-110), Image to Patch Embedding (line 148-167), organizing MSCAN class (line 171-255), Depth-wise convolution and Scale (line 258-266) \\
+    Parameter set up is in ~/SegNeXt/local\_configs/\_base\_/models/
+* Decoder: Model is in SegNeXt/mmseg/models/decode\_heads/ham\_head.py, including Matrix Decomposition (line 11-100), NMF by calling Matrix Decomposition (line 103-145), Hamburger class by calling NMF (line 148-180), and LightHamHead class by calling Hamburger (line 183-240)\\
+    Parameter set up is in ~/SegNeXt/local\_configs/\_base\_/models/
 
 
 
