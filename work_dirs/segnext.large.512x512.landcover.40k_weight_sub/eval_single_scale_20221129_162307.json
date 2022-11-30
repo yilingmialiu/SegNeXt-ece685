@@ -1,0 +1,18 @@
+{
+    "config": "/work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py",
+    "metric": {
+        "aAcc": 0.8775,
+        "mIoU": 0.6714,
+        "mAcc": 0.8014,
+        "IoU.background": 0.8269000244140625,
+        "IoU.building": 0.6370000076293946,
+        "IoU.woodland": 0.7486000061035156,
+        "IoU.water": 0.6708000183105469,
+        "IoU.road": 0.47369998931884766,
+        "Acc.background": 0.9345999908447266,
+        "Acc.building": 0.8179000091552734,
+        "Acc.woodland": 0.8048000335693359,
+        "Acc.water": 0.8366000366210937,
+        "Acc.road": 0.6127999877929687
+    }
+}
