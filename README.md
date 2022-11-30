@@ -84,9 +84,11 @@ python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.la
 ## Where to find each model in the framework:
 
 * Data processing (customized): SegNeXt/local\_configs/\_base\_/datasets/. In this directory, I created separate processing file for each dataset.
-* Encoder: Model is in SegNeXt/mmseg/models/backbones/mscan.py, including MLP (line 15-35), StemConv (line 38-56), Attention (line 59-91), Spatial Attention (line 94-110), Image to Patch Embedding (line 148-167), organizing MSCAN class (line 171-255), Depth-wise convolution and Scale (line 258-266) \\
-    Parameter set up is in ~/SegNeXt/local\_configs/\_base\_/models/
-* Decoder: Model is in SegNeXt/mmseg/models/decode\_heads/ham\_head.py, including Matrix Decomposition (line 11-100), NMF by calling Matrix Decomposition (line 103-145), Hamburger class by calling NMF (line 148-180), and LightHamHead class by calling Hamburger (line 183-240)\\
+* Encoder: Model is in SegNeXt/mmseg/models/backbones/mscan.py, including MLP (line 15-35), StemConv (line 38-56), Attention (line 59-91), Spatial Attention (line 94-110), Image to Patch Embedding (line 148-167), organizing MSCAN class (line 171-255), Depth-wise convolution and Scale (line 258-266) 
+
+   Parameter set up is in ~/SegNeXt/local\_configs/\_base\_/models/
+* Decoder: Model is in SegNeXt/mmseg/models/decode\_heads/ham\_head.py, including Matrix Decomposition (line 11-100), NMF by calling Matrix Decomposition (line 103-145), Hamburger class by calling NMF (line 148-180), and LightHamHead class by calling Hamburger (line 183-240)
+
     Parameter set up is in ~/SegNeXt/local\_configs/\_base\_/models/
 
 
