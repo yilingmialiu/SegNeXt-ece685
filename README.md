@@ -20,23 +20,6 @@ If you find our repo useful for your research, please consider citing our paper:
   year={2022}
 }
 
-
-@article{guo2022visual,
-  title={Visual Attention Network},
-  author={Guo, Meng-Hao and Lu, Cheng-Ze and Liu, Zheng-Ning and Cheng, Ming-Ming and Hu, Shi-Min},
-  journal={arXiv preprint arXiv:2202.09741},
-  year={2022}
-}
-
-
-@inproceedings{
-    ham,
-    title={Is Attention Better Than Matrix Decomposition?},
-    author={Zhengyang Geng and Meng-Hao Guo and Hongxu Chen and Xia Li and Ke Wei and Zhouchen Lin},
-    booktitle={International Conference on Learning Representations},
-    year={2021},
-}
-
 ```
 
 ## Results
@@ -58,44 +41,48 @@ python setup.py develop
 
 ## Training
 
-We use 8 GPUs for training by default. Run:
+Original SegNeXt used 8 GPUs for training by default. However, we changed it to 1 GPU because of limited computational resources. Run:
 
+For Landcover.ai:
 ```bash
-./tools/dist_train.sh /path/to/config 8
+python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight.py
+python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py
+python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub_nopre.py
 ```
+For Pascal VOC:
+```bash
+python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k.py
+python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub.py
+python tools/train.py /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub_nopre.py
+```
+
 
 ## Evaluation
 
 To evaluate the model, run:
 
+For Landcover.ai:
 ```bash
-./tools/dist_test.sh /path/to/config /path/to/checkpoint_file 8 --eval mIoU
+python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.voc.40k/latest.pth --eval mIoU
+python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.voc.40k_sub/latest.pth --eval mIoU
+python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.voc.40k_sub_nopre.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.voc.40k_sub_nopre/latest.pth --eval mIoU
 ```
 
-## FLOPs
 
-Install torchprofile using
-
+For Pascal VOC:
 ```bash
-pip install torchprofile
+python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight/latest.pth --eval mIoU
+python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight_sub/latest.pth --eval mIoU
+python tools/test.py  /work/yl407/SegNeXt/local_configs/segnext/large/segnext.large.512x512.landcover.40k_weight_sub_nopre.py /work/yl407/SegNeXt/work_dirs/segnext.large.512x512.landcover.40k_weight_sub_nopre/latest.pth --eval mIoU
 ```
 
-To calculate FLOPs for a model, run:
-
-```bash
-bash tools/get_flops.py /path/to/config --shape 512 512
-```
-
-## Contact
-
-For technical problem, please create an issue.
-
-If you have any private question, please feel free to contact me via gmh20@mails.tsinghua.edu.cn.
 
 
 ## Acknowledgment
 
-Our implementation is mainly based on [mmsegmentaion](https://github.com/open-mmlab/mmsegmentation/tree/v0.24.1), [Segformer](https://github.com/NVlabs/SegFormer) and [Enjoy-Hamburger](https://github.com/Gsunshine/Enjoy-Hamburger). Thanks for their authors.
+Our implementation is mainly based on (https://github.com/visual-attention-network/segnext)
+
+SegNeXt implementation is mainly based on [mmsegmentaion](https://github.com/open-mmlab/mmsegmentation/tree/v0.24.1), [Segformer](https://github.com/NVlabs/SegFormer) and [Enjoy-Hamburger](https://github.com/Gsunshine/Enjoy-Hamburger). Thanks for their authors.
 
 ## LICENSE
 
